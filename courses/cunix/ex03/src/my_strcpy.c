@@ -1,4 +1,3 @@
-#include <stdio.h>
 char *my_strcpy(char *dest, const char *src)
 {
     char *dest_to_return = dest; // save pointer to a start of dest
