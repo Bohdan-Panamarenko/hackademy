@@ -91,12 +91,32 @@ int       test_smalltree()
   return (0);
 }
 
+void test_node_order(node_t *node) {
+  static int ord = 1;
+  assert(*((int *)node->data) == ord);
+  ord++;
+}
+
+int test_deep_traverse()
+{
+  int one = 1, two = 2, three = 3;
+  node_t *root;
+  root = insert(NULL, "b", &three);
+  insert(root, "a", &one);
+  insert(root, "c", &two);
+  visit_tree(root, &test_node_order);
+  return (0);
+}
+
+int test
+
 int   main(void)
 {
   test_allocation();
   assert(test_prototyping() == 0);
   assert(test_smalltree() == 0);
   assert(test_visiting() == 0);
+  assert(test_deep_traverse() == 0);
 
   return (0);
 }
