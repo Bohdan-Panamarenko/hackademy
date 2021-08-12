@@ -47,17 +47,17 @@ void    list_destroy(node_t **head, void (*fp)(void *data))
 
 void    list_push(node_t *head, void *data)
 {
-    node_t *last = head;
-    while (last->next != NULL)
+    //node_t *last = head;
+    while (head->next != NULL)
     {
-        last = last->next;
+        head = head->next;
     }
-    last->next = list_create(data);
+    head->next = list_create(data);
 }
 
 void    list_unshift(node_t **head, void *data)
 {
-    if (*head)
+    if (!*head)
     {
         *head = list_create(data);
     }
@@ -103,7 +103,7 @@ void    *list_remove(node_t **head, int pos)
     }
     else
     {
-        int i = 0;
+        int i = 1;
         void *data = NULL;
         while (i != pos && curr_pos->next != NULL)
         {
