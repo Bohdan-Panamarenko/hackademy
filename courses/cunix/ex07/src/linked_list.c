@@ -32,7 +32,8 @@ void    list_destroy(node_t **head, void (*fp)(void *data))
     {
         return;
     }
-    else {
+    else 
+    {
         node_t *list = *head;
         while (list->next != NULL)
         {
@@ -76,7 +77,8 @@ void    *list_shift(node_t **head)
     {
         return NULL;
     }
-    else {
+    else 
+    {
         node_t *new_list = NULL;
         if ((*head)->next)
         {
@@ -131,19 +133,21 @@ void    *list_remove(node_t **head, int pos)
             free(prev->next);
             prev->next = next;
         }
-            return data;
+        return data;
     }
 }
 
 void    list_print(node_t *head)
 {
-    if (!head) {
+    if (!head) 
+    {
         return;
     }
-    else {
+    else 
+    {
         do 
         {
-            printf("%s\n", (char*)head->data);
+            printf("%s\n", (char *)head->data);
             head = head->next;
         }
         while (head);
@@ -151,10 +155,12 @@ void    list_print(node_t *head)
 }
 void    list_visitor(node_t *head, void (*fp)(void *data))
 {
-    if (!head) {
+    if (!head) 
+    {
         return;
     }
-    else {
+    else 
+    {
         do 
         {
             fp(head->data);
