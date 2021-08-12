@@ -15,12 +15,13 @@ node_t *insert(node_t *root, char *key, void *data)
     {
         if (strcmp(key, root->key) < 0)
         {
-            return root->left = insert(root->left, key, data);
+            root->left = insert(root->left, key, data);
         }
         else
         {
-            return root->right = insert(root->right, key, data);
+            root->right = insert(root->right, key, data);
         }
+        return root;
     }
     else
     {
