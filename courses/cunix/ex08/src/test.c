@@ -108,8 +108,6 @@ int test_deep_traverse()
   return (0);
 }
 
-int test
-
 int   main(void)
 {
   test_allocation();
