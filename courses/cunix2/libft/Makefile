@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 CC					:= gcc
 RM					:= rm -rf
 CFLAGS		    	+= -std=c99 -Iinclude -Wall -Wextra -Werror -c
@@ -15,3 +16,4 @@ checkstyle:
 
 clean:
 				$(RM) $(OBJS) $(LIB_NAME)
+=======
