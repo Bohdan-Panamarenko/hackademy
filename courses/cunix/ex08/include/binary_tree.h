@@ -1,6 +1,10 @@
 #ifndef  BINARY_TREE_H_
 #define  BINARY_TREE_H_
 
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+
 typedef struct  node {
   char          *key;
   void          *data;

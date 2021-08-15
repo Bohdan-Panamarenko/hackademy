@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "../include/linked_list.h"
 
 node_t  *list_create(void *data)

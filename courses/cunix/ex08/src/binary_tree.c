@@ -1,7 +1,4 @@
 #include "../include/binary_tree.h"
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 node_t  *allocnode()
 {
     node_t *node = (node_t *)malloc(sizeof(node_t));
