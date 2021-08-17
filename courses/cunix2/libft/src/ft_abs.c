@@ -1,4 +1,5 @@
 #include "../libft.h"
+
 int ft_abs(int j)
 {
     if (j < 0)

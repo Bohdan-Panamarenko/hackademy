@@ -1,7 +1,9 @@
 #include "../libft.h"
+
 char *ft_strchr(const char *s, int c)
 {
     char chr = (char)c;
+
     do 
     {
         if (*s == chr)
@@ -10,5 +12,6 @@ char *ft_strchr(const char *s, int c)
         }
     }
     while (*(s++) != '\0');
+
     return 0;
 }
