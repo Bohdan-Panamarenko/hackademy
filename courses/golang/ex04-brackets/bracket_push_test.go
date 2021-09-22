@@ -1,4 +1,4 @@
-package brackets
+package main
 
 import (
 	"testing"
