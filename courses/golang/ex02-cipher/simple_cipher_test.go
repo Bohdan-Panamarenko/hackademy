@@ -28,7 +28,7 @@
 // Values consisting entirely of the letter 'a' are disallowed.
 // For invalid arguments NewVigenere returns nil.
 
-package cipher
+package main
 
 import (
 	"fmt"
