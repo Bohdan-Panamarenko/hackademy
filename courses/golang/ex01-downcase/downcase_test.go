@@ -1,4 +1,4 @@
-package downcase
+package main
 
 import (
 	"testing"
