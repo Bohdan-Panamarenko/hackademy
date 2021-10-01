@@ -6,7 +6,7 @@ func Downcase(str string) (answ string, err error) {
 			char += 32
 		}
 		answ += string(char)
-	} 
+	}
 	return answ, nil
 }
 

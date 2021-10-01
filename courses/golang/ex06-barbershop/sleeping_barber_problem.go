@@ -39,7 +39,7 @@ func Queue(clients, closeQueue chan int) {
 	Push := func(client int) bool {
 		message := fmt.Sprintf("<->Client %v", client)
 
-		if (len(Seats) < numOfSeats) {
+		if len(Seats) < numOfSeats {
 			Seats = append(Seats, client)
 			fmt.Println(message + " is in queue")
 			return true
@@ -49,7 +49,7 @@ func Queue(clients, closeQueue chan int) {
 	}
 
 	Pop := func() int {
-		if (len(Seats) > 0) {
+		if len(Seats) > 0 {
 			client := Seats[0]
 			Seats = Seats[1:]
 			return client
@@ -65,9 +65,9 @@ func Queue(clients, closeQueue chan int) {
 		select {
 		case c := <-clients:
 
-			if (ClientServing == 0) {
+			if ClientServing == 0 {
 				if len(Seats) == 0 {
-					barberQueue <- c 
+					barberQueue <- c
 				} else {
 					Push(c)
 					barberQueue <- Pop()
@@ -79,7 +79,7 @@ func Queue(clients, closeQueue chan int) {
 			barberClose <- 1
 			return
 		default:
-			if (ClientServing == 0 && len(Seats) > 0) {
+			if ClientServing == 0 && len(Seats) > 0 {
 				barberQueue <- Pop()
 			}
 		}
@@ -90,7 +90,7 @@ func main() {
 	clients := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14}
 	queue := make(chan int, 2)
 	close := make(chan int)
-	
+
 	go Queue(queue, close)
 	time.Sleep(50 * time.Millisecond)
 

@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	// "math/rand"
-	// "time"
 )
 
 type Cipher interface {
@@ -16,15 +14,14 @@ type Caesar struct {
 }
 
 func NewCaesar() *Caesar {
-	return &Caesar { Code: 3 }
+	return &Caesar{Code: 3}
 }
 
-func NewShift(shift int) (*Caesar) {
+func NewShift(shift int) *Caesar {
 	if shift < -25 || shift > 25 || shift == 0 {
-		//caesar := &Caesar{}
 		return nil
 	}
-	return &Caesar { Code: shift }
+	return &Caesar{Code: shift}
 }
 
 func (c Caesar) Encode(message string) (codedMessage string) {
@@ -68,19 +65,9 @@ func (c Caesar) Decode(codedMessage string) (message string) {
 	return message
 }
 
-
 type Vigenere struct {
 	Code string
 }
-
-// func generateCode() string {
-// 	code := ""
-// 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-// 	for i := 0; i < 100; i++ {
-// 		code += fmt.Sprint('a' + r.Intn(25))
-// 	}
-// 	return code
-// }
 
 func NewVigenere(code string) *Vigenere {
 	isValid, onlyA := true, true
@@ -98,7 +85,7 @@ func NewVigenere(code string) *Vigenere {
 		return nil
 	}
 
-	return &Vigenere{ Code: code }
+	return &Vigenere{Code: code}
 }
 
 func (v Vigenere) getCode(messageLen int) string {
@@ -106,7 +93,7 @@ func (v Vigenere) getCode(messageLen int) string {
 	codeInitialLen := len(currCode)
 	codeLen := codeInitialLen
 
-	for (messageLen > codeLen) {
+	for messageLen > codeLen {
 		currCode += v.Code
 		codeLen += codeInitialLen
 	}

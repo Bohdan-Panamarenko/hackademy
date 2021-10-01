@@ -7,7 +7,7 @@ import (
 
 func Frequency(text string) map[string]int {
 	letters := make(map[string]int)
-	
+
 	for _, value := range text {
 		letters[string(value)] += 1
 	}
@@ -15,7 +15,7 @@ func Frequency(text string) map[string]int {
 	return letters
 }
 
-func FrequencyRoutine(text string, wg *sync.WaitGroup, channel chan map[string]int){
+func FrequencyRoutine(text string, wg *sync.WaitGroup, channel chan map[string]int) {
 	defer wg.Done()
 	letters := make(map[string]int)
 
@@ -29,15 +29,15 @@ func FrequencyRoutine(text string, wg *sync.WaitGroup, channel chan map[string]i
 func ConcurrentFrequency(texts []string) map[string]int {
 	var wg sync.WaitGroup
 	letters := make(map[string]int)
-	channel := make(chan map [string]int, len(texts))
+	channel := make(chan map[string]int, len(texts))
 	for _, text := range texts {
 		wg.Add(1)
 		go FrequencyRoutine(text, &wg, channel)
 	}
-	
+
 	wg.Wait()
 
-	for i := len(texts); i > 0; i--  {
+	for i := len(texts); i > 0; i-- {
 		letterMap := <-channel
 		for key, value := range letterMap {
 			letters[key] += value
