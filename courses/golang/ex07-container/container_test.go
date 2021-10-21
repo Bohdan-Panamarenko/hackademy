@@ -41,7 +41,7 @@ func TestNoArgs(t *testing.T) {
 
 func TestProcs(t *testing.T) {
 	var r io.Reader
-	r = strings.NewReader("ls /proc")
+	r = strings.NewReader("PATH=$PATH:/bin; ls /proc")
 	c := testcli.Command("sudo", "./container", "run", "/bin/bash")
 	c.SetStdin(r)
 	c.Run()
