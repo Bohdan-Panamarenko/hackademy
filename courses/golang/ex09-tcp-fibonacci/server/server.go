@@ -6,7 +6,8 @@ import (
 	"log"
 	"math/big"
 	"net"
-	"tcp-fibonacci/calc_fibonacci.go"
+	"tcp-fibonacci/cache_fibonacci"
+	"tcp-fibonacci/calc_fibonacci"
 	"tcp-fibonacci/fibonacci_con_types"
 	"time"
 )
@@ -18,7 +19,25 @@ func failResponse(conn net.Conn) {
 	resp.Send(conn)
 }
 
+func getFibValue(c *cache_fibonacci.Cache, n int64) (*big.Int, error) {
+	valueInCache := c.Get(n)
+	if valueInCache == nil {
+		value, err := calc_fibonacci.Calc(n)
+		if err != nil {
+			return nil, err
+		}
+
+		c.Set(n, value)
+
+		return value, nil
+	}
+
+	return valueInCache, nil
+}
+
 func main() {
+
+	cache := cache_fibonacci.New(10 * time.Minute)
 
 	fmt.Println("Launching server...")
 
@@ -51,8 +70,8 @@ func main() {
 
 				resp := &fibonacci_con_types.FibResponse{}
 
-				start := time.Now()                          // time
-				resp.Num, err = calc_fibonacci.Calc(req.Num) // calculate fibonacci
+				start := time.Now()                         // time
+				resp.Num, err = getFibValue(cache, req.Num) // calculate fibonacci
 				if err != nil {
 					log.Println("Calculating err:", err.Error())
 					failResponse(conn)
