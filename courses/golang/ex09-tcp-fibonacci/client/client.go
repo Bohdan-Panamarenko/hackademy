@@ -20,8 +20,9 @@ func main() {
 		return
 	}
 
+	reader := bufio.NewReader(os.Stdin)
+
 	for {
-		reader := bufio.NewReader(os.Stdin)
 		text, err := reader.ReadString('\n') // read user input
 		if err != nil {
 			log.Println("User input reading err:", err.Error())
